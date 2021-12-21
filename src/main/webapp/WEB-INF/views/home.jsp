@@ -2,51 +2,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!doctype html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="theme-color" content="#856d47"/>
-    <title>Hotel XYZ</title>
-    <meta name="author" content="Themezinho">
-    <meta name="description" content="Beautiful premium look hotels website">
-    <meta name="keywords" content="hotel, room, restaurant, events, pool, nightlife, bed, matras, balcony, vacation, honeymoon, suit, premium, deluxe, penthouse, vip">
-
-    <!-- SOCIAL MEDIA META -->
-    <meta property="og:description" content="Hotel XYZ">
-    <meta property="og:image" content="http://www.themezinho.net/quardo/preview.png">
-    <meta property="og:site_name" content="Quardo">
-    <meta property="og:title" content="Quardo">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="http://www.themezinho.net/quardo">
-
-    <!-- TWITTER META -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:site" content="@Quardo">
-    <meta name="twitter:creator" content="@Quardo">
-    <meta name="twitter:title" content="Quardo">
-    <meta name="twitter:description" content="Hotel XYZ">
-    <meta name="twitter:image" content="http://www.themezinho.net/quardo/preview.png">
-
-    <!-- FAVICON FILES -->
-
-    <link rel="apple-touch-icon" sizes="180x180" href="static/_frontend/ico/apple-touch-icon">
-    <link rel="icon" type="image/png" sizes="32x32" href="static/_frontend/ico/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="static/_frontend/ico/favicon-16x16.png">
-    <link rel="manifest" href="static/_frontend/ico/site.webmanifest">
-    <meta name="msapplication-TileColor" content="#da532c">
-    <meta name="theme-color" content="#ffffff">
-
-
-    <!-- CSS FILES -->
-    <link rel="stylesheet" href="static/_frontend/css/lineicons.css">
-    <link rel="stylesheet" href="static/_frontend/css/datepicker.min.css">
-    <link rel="stylesheet" href="static/_frontend/css/fancybox.min.css">
-    <link rel="stylesheet" href="static/_frontend/css/swiper.min.css">
-    <link rel="stylesheet" href="static/_frontend/css/bootstrap.min.css">
-    <link rel="stylesheet" href="<c:url value="/static/_frontend/css/style.css"/>">
-</head>
-
-
+<%@ include file="_patials/head.jsp" %>
 <body>
 <div class="cursor js-cursor"></div>
 <div class="preloader">

@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!doctype html>
 <html lang="en">
@@ -28,10 +29,10 @@
 
     <!-- FAVICON FILES -->
 
-    <link rel="apple-touch-icon" sizes="180x180" href="ico/apple-touch-icon">
-    <link rel="icon" type="image/png" sizes="32x32" href="ico/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="ico/favicon-16x16.png">
-    <link rel="manifest" href="ico/site.webmanifest">
+    <link rel="apple-touch-icon" sizes="180x180" href="static/_frontend/ico/apple-touch-icon">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/_frontend/ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/_frontend/ico/favicon-16x16.png">
+    <link rel="manifest" href="static/_frontend/ico/site.webmanifest">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
 
@@ -42,7 +43,7 @@
     <link rel="stylesheet" href="static/_frontend/css/fancybox.min.css">
     <link rel="stylesheet" href="static/_frontend/css/swiper.min.css">
     <link rel="stylesheet" href="static/_frontend/css/bootstrap.min.css">
-    <link rel="stylesheet" href="static/_frontend/css/style.css">
+    <link rel="stylesheet" href="<c:url value="/static/_frontend/css/style.css"/>">
 </head>
 
 
@@ -51,7 +52,7 @@
 <div class="preloader">
     <div class="loadbar"></div>
     <!-- end loadbar -->
-    <figure> <span>PLEASE WAIT</span> <img src="images/preloader.png" alt="Image"> </figure>
+    <figure> <span>PLEASE WAIT</span> <img src="static/_frontend/images/preloader.png" alt="Image"> </figure>
 </div>
 <!-- end preloader -->
 <div class="page-transition">
@@ -109,7 +110,7 @@
     <!-- end hamburger-navigation -->
     <nav class="navbar">
         <div class="container">
-            <div class="logo"> <a href="index.html"><img src="images/logo.png" alt="Image"></a> </div>
+            <div class="logo"> <a href="index.html"><img src="static/_frontend/images/logo.png" alt="Image"></a> </div>
             <!-- end logo -->
             <div class="navbar-text">Booking +94 11 320 3562</div>
             <!-- end navbar-text -->
@@ -288,15 +289,15 @@
 </main>
 
 <!-- JS FILES -->
-<script src="js/jquery.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/fancybox.min.js"></script>
-<script src="js/swiper.min.js"></script>
-<script src="js/datepicker.min.js"></script>
-<script src="js/smooth-scrollbar.js"></script>
-<script src="js/overscroll.js"></script>
-<script src="js/TweenMax.min.js"></script>
-<script src="js/scripts.js"></script>
+<script src="static/_frontend/js/jquery.min.js"></script>
+<script src="static/_frontend/js/bootstrap.min.js"></script>
+<script src="static/_frontend/js/fancybox.min.js"></script>
+<script src="static/_frontend/js/swiper.min.js"></script>
+<script src="static/_frontend/js/datepicker.min.js"></script>
+<script src="static/_frontend/js/smooth-scrollbar.js"></script>
+<script src="static/_frontend/js/overscroll.js"></script>
+<script src="static/_frontend/js/TweenMax.min.js"></script>
+<script src="static/_frontend/js/scripts.js"></script>
 
 <!--Currency JS-->
 <script>

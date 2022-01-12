@@ -91,12 +91,12 @@ public class DataSeeder implements ApplicationRunner {
         reservationRepository.save(reservation);
         invoiceRepository.save(invoice);
 
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("noreply@hotelxyz.com");
-        message.setTo(guest.getEmail());
-        message.setSubject("Reservation: #"  +  reservation.getId());
-        message.setText(reservation.toString());
-        emailSender.send(message);
+//        SimpleMailMessage message = new SimpleMailMessage();
+//        message.setFrom("noreply@hotelxyz.com");
+//        message.setTo(guest.getEmail());
+//        message.setSubject("Reservation: #"  +  reservation.getId());
+//        message.setText(reservation.toString());
+//        emailSender.send(message);
 
     }
 }

@@ -50,6 +50,6 @@ public class BookingController {
             model.addAttribute("availableTypes", availableTypes);
         }
 
-        return "search";
+        return "roombookingform";
     }
 }

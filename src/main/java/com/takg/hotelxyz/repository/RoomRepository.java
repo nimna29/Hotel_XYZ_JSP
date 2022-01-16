@@ -10,23 +10,20 @@ import java.time.LocalDate;
 import java.util.List;
 
 public interface RoomRepository extends JpaRepository<Room, Integer> {
-    @Query("SELECT r.roomType AS roomType, COUNT(r.roomType) AS totalRooms, MIN(r.costPerNight) AS minPerNightCost FROM Room AS r " +
-            "WHERE NOT EXISTS (SELECT b.id FROM Reservation b " +
-            "WHERE b.room.roomNumber = r.roomNumber and b.checkInDate < :checkOutDate and b.checkOutDate > :checkInDate) GROUP BY r.roomType")
-    List<IRoomTypeAvailability> findAvailableRoomTypeCountMinCostPerNightByCheckInDateAndCheckOutDate(
+    @Query("FROM Room AS r WHERE NOT EXISTS (SELECT b.id FROM RoomReservation b JOIN b.rooms rm  " +
+            "WHERE rm.roomNumber = r.roomNumber AND b.checkInDate < :checkOutDate and b.checkOutDate > :checkInDate)")
+    List<Room> findAvailableRoomsByCheckInAndCheckOut(
             @Param("checkInDate") LocalDate checkInDate,
             @Param("checkOutDate") LocalDate checkOutDate);
 
 
-    @Query("FROM Room AS r " +
-            "WHERE NOT EXISTS (SELECT b.id FROM Reservation b " +
-            "WHERE b.room.roomNumber = r.roomNumber and b.checkInDate < :checkOutDate and b.checkOutDate > :checkInDate)" +
-            " AND r.roomType = :roomType")
-    List<Room> findAvailableRoomsByRoomTypeCheckInDateAndCheckOutDate(
+    @Query("FROM Room AS r WHERE NOT EXISTS (SELECT b.id FROM RoomReservation b JOIN b.rooms rm  " +
+            "WHERE rm.roomNumber = r.roomNumber AND b.checkInDate < :checkOutDate and b.checkOutDate > :checkInDate) AND r.roomType = :roomType")
+    List<Room> findAvailableRoomsByCheckInAndCheckOutAndRoomType(
             @Param("checkInDate") LocalDate checkInDate,
             @Param("checkOutDate") LocalDate checkOutDate,
             @Param("roomType") RoomType roomType);
 
-
     List<Room> findByRoomType(RoomType roomType);
+
 }

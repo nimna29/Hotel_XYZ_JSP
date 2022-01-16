@@ -1,5 +1,9 @@
 <%@ taglib prefix="c" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page import="com.takg.hotelxyz.domain.model.RoomType" %>
+<%@ taglib prefix="d" uri="http://java.sun.com/jsp/jstl/core" %>
 <!doctype html>
 <html lang="en">
 <jsp:include page="_head.jsp">
@@ -9,12 +13,6 @@
 <body>
 
 <div class="cursor js-cursor"></div>
-<div class="preloader">
-  <div class="loadbar"></div>
-  <!-- end loadbar -->
-  <figure> <span>PLEASE WAIT</span> <img src="_frontend/images/preloader.png" alt="Image"> </figure>
-</div>
-<!-- end preloader -->
 <div class="page-transition">
   <div class="layer"></div>
   <!-- end layer --> 
@@ -100,7 +98,9 @@
           <div class="containe" style="max-width: 900px;">
             <div class="title" style='color:white;'>RESERVATION</div>
             <div class="content"><br>
-              <form:form method="Get" action="/booking">
+
+              <form:form method="GET" action="/booking">
+
                 <div class="user-details">
 
                   <table>
@@ -120,8 +120,8 @@
 
                     <tr>
                     <td>
-                        <label for="adults">No of Adults(Change-Rooms)</label>
-                        <input type="number" id="adults" min="1" name="adults" value="${adults}"
+                        <label for="rooms">No of Rooms</label>
+                        <input type="number" id="rooms" min="1" name="rooms" value="${pax_rooms}"
                                style = " border-radius: 6px;"/>
                     </td>
 
@@ -137,15 +137,22 @@
                 </div>
                 <br>
                 <div class="button">
-                  <input type="submit" value="Book Now" >
+                  <input type="submit" value="Search" >
                 </div>
-              </form:form>
             </div>
           </div>
 
 <br><br><br>
+
           </div>
           <!-- end rooms-filter -->
+
+        <d:choose>
+        <d:when test="${rooms == null}">
+
+        </d:when>
+        <d:when test="${room_count > 0}">
+
           <ul class="rooms-list">
             <li>
               <div class="room-box">
@@ -157,15 +164,25 @@
                   <div class="bottom-specs">
                     <div class="icons"> <img src="_frontend/images/icon01.png" alt="Image"> <img src="_frontend/images/icon02.png" alt="Image"> <img src="_frontend/images/icon03.png" alt="Image"> <img src="_frontend/images/icon04.png" alt="Image"> <img src="_frontend/images/icon05.png" alt="Image"> </div>
                     <!-- end icons -->
-                    <div class="reviews">Available <span>15</span></div>
+                    <div class="reviews">Available <span>${rooms.get(RoomType.Deluxe).size()}</span></div>
                     <!-- end reviews --> 
                   </div>
                   <!-- end bottom-specs -->
-                  <form method="GET" name="bookNowForm" action="<c:url value="#"/>">
+                  <spring:url value="/reservations/?room_type={roomType}&check_in={checkInDate}&check_out={checkOutDate}&rooms={rooms}" var="deluxe_url">
+                    <spring:param name="roomType" value="${RoomType.Deluxe}" />
+                    <spring:param name="checkInDate" value="${check_in}" />
+                    <spring:param name="checkOutDate" value="${check_out}" />
+                    <spring:param name="rooms" value="${pax_rooms}" />
+                  </spring:url>
+
+                  <form method="GET" name="deluxe">
                     <div class="button">
-                      <input type="submit" value="Select" >
+                    <a href="${deluxe_url}">
+                      <input type="submit" value="Select">
+                    </a>
                     </div>
                   </form>
+
                 </div>
                 <!-- end content --> 
               </div>
@@ -186,7 +203,7 @@
                     <!-- end reviews --> 
                   </div>
                   <!-- end bottom-specs -->
-                  <form method="GET" name="bookNowForm" action="<c:url value="#"/>">
+                  <form method="GET" name="premium">
                     <div class="button">
                       <input type="submit" value="Select" >
                     </div>
@@ -211,7 +228,7 @@
                     <!-- end reviews --> 
                   </div>
                   <!-- end bottom-specs -->
-                  <form method="GET" name="bookNowForm" action="<c:url value="#"/>">
+                  <form method="GET" name="suite" >
                     <div class="button">
                       <input type="submit" value="Select" >
                     </div>
@@ -222,7 +239,16 @@
               <!-- end room-box --> 
             </li>
             <!-- end li -->
+          </ul>
+        </d:when>
 
+        <d:otherwise>
+        <h2>Sorry We are sold out.</h2>
+        <p>No rooms are available for these dates</p>
+        </d:otherwise>
+        </d:choose>
+
+        </form:form>
   </section>
   <!-- end content-section -->
   <section class="content-section no-spacing" data-background="#856d47">
@@ -250,97 +276,6 @@
 
 <!--JS Files-->
 <jsp:include page="_scripts.jsp"/>
-
-<!--Currency JS-->
-<script>
-	var x, i, j, l, ll, selElmnt, a, b, c;
-	/*look for any elements with the class "custom-select":*/
-	x = document.getElementsByClassName("custom-select");
-	l = x.length;
-	for (i = 0; i < l; i++) {
-	selElmnt = x[i].getElementsByTagName("select")[0];
-	ll = selElmnt.length;
-
-	/*for each element, create a new DIV that will act as the selected item:*/
-	a = document.createElement("DIV");
-	a.setAttribute("class", "select-selected");
-	a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
-	x[i].appendChild(a);
-
-	/*for each element, create a new DIV that will contain the option list:*/
-	b = document.createElement("DIV");
-	b.setAttribute("class", "select-items select-hide");
-
-	for (j = 1; j < ll; j++) {
-		/*for each option in the original select element,
-		create a new DIV that will act as an option item:*/
-		c = document.createElement("DIV");
-		c.innerHTML = selElmnt.options[j].innerHTML;
-
-		c.addEventListener("click", function(e) {
-			/*when an item is clicked, update the original select box,
-			and the selected item:*/
-			var y, i, k, s, h, sl, yl;
-			s = this.parentNode.parentNode.getElementsByTagName("select")[0];
-			sl = s.length;
-			h = this.parentNode.previousSibling;
-
-			for (i = 0; i < sl; i++) {
-			if (s.options[i].innerHTML == this.innerHTML) {
-				s.selectedIndex = i;
-				h.innerHTML = this.innerHTML;
-				y = this.parentNode.getElementsByClassName("same-as-selected");
-				yl = y.length;
-				for (k = 0; k < yl; k++) {
-				y[k].removeAttribute("class");
-				}
-				this.setAttribute("class", "same-as-selected");
-				break;
-			}
-			}
-			h.click();
-		});
-		b.appendChild(c);
-	}
-
-	x[i].appendChild(b);
-	a.addEventListener("click", function(e) {
-		/*when the select box is clicked, close any other select boxes,
-		and open/close the current select box:*/
-		e.stopPropagation();
-		closeAllSelect(this);
-		this.nextSibling.classList.toggle("select-hide");
-		this.classList.toggle("select-arrow-active");
-		});
-	}
-
-	function closeAllSelect(elmnt) {
-	/*a function that will close all select boxes in the document,
-	except the current select box:*/
-
-	var x, y, i, xl, yl, arrNo = [];
-	x = document.getElementsByClassName("select-items");
-	y = document.getElementsByClassName("select-selected");
-	xl = x.length;
-	yl = y.length;
-	for (i = 0; i < yl; i++) {
-		if (elmnt == y[i]) {
-		arrNo.push(i)
-		} else {
-		y[i].classList.remove("select-arrow-active");
-		}
-	}
-	for (i = 0; i < xl; i++) {
-		if (arrNo.indexOf(i)) {
-		x[i].classList.add("select-hide");
-		}
-	}
-	}
-
-	/*if the user clicks anywhere outside the select box,
-	then close all select boxes:*/
-	document.addEventListener("click", closeAllSelect);
-	</script>
 
 </body>
 </html>

@@ -132,8 +132,8 @@
                                         </div>
 
                                         <div class="input-box">
-                                            <span class="details" style='color:white;' for="adults">No. Of Rooms(Adults)</span>
-                                            <input type="number" id="adults" min="1" name="adults" value="${adults}"/>
+                                            <span class="details" style='color:white;' for="rooms">No. Of Rooms</span>
+                                            <input type="number" id="rooms" min="1" name="rooms" value="1"/>
                                         </div>
 
                                         <div class="input-box">

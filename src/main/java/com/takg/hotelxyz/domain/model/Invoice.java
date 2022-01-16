@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -23,17 +24,36 @@ public class Invoice {
     @OneToMany(mappedBy = "invoice")
     private List<Transaction> transactions;
 
-    private String description;
+    @ElementCollection
+    @OrderColumn
+    @CollectionTable(
+            name="LineItem",
+            joinColumns=@JoinColumn(name="invoice_id")
+    )
+    private List<LineItem> items;
 
-    private BigDecimal amount;
+    @Column(nullable = false)
+    private BigDecimal total = BigDecimal.ZERO;
+
     private String status;
+
+    public void addLine(String description, BigDecimal amount)
+    {
+        if (items == null)
+        {
+            items = new ArrayList<>();
+        }
+
+        items.add(new LineItem(description, amount));
+        this.total = this.total.add(amount);
+    }
 
     @Override
     public String toString() {
         return "Invoice{" +
                 "id=" + id +
-                ", description='" + description + '\'' +
-                ", amount=" + amount +
+                ", items=" + items +
+                ", total=" + total +
                 ", status='" + status + '\'' +
                 '}';
     }

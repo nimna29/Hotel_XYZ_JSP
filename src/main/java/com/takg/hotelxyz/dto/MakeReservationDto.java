@@ -1,24 +1,36 @@
 package com.takg.hotelxyz.dto;
 
-import com.takg.hotelxyz.domain.model.Guest;
 import com.takg.hotelxyz.domain.model.RoomType;
 import lombok.Getter;
+import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
 
 @Getter
+@Setter
 public class MakeReservationDto {
-    private final Guest guest;
-    private final int adults;
-    private final LocalDate checkInDate;
-    private final LocalDate checkOutDate;
-    private final RoomType roomType;
+    private String firstName;
 
-    public MakeReservationDto(Guest guest, int adults, LocalDate checkInDate, LocalDate checkOutDate, RoomType roomType) {
-        this.guest = guest;
-        this.adults = adults;
-        this.checkInDate = checkInDate;
-        this.checkOutDate = checkOutDate;
-        this.roomType = roomType;
-    }
+    private String lastName;
+
+    private String nic;
+
+    private String passport;
+
+    private String email;
+
+    private String mobileNo;
+
+    private  int paxRooms;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate checkInDate;
+
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    private LocalDate checkOutDate;
+
+    private RoomType roomType;
+
+
 }

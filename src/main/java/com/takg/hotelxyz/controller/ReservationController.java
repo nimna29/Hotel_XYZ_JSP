@@ -1,17 +1,18 @@
 package com.takg.hotelxyz.controller;
 
-import com.takg.hotelxyz.domain.model.Reservation;
+import com.takg.hotelxyz.domain.model.Room;
+import com.takg.hotelxyz.domain.model.RoomReservation;
 import com.takg.hotelxyz.domain.model.RoomType;
+import com.takg.hotelxyz.dto.MakeReservationDto;
 import com.takg.hotelxyz.services.BookingService;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.Comparator;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/reservations")
@@ -24,40 +25,56 @@ public class ReservationController {
     }
 
     @GetMapping
-    @RequestMapping("/{roomType}")
     public String showReservationForm(
-            @PathVariable("roomType") RoomType roomType,
-
-            @RequestParam(name = "check_in", required = false)
-            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-            LocalDate checkInDate,
-
-            @RequestParam(name = "check_out", required = false)
-            @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
-                    LocalDate checkOutDate,
-
-            @RequestParam(name="adults", required = false,  defaultValue = "1") Integer adults,
+            @RequestParam(name = "room_type") RoomType roomType,
+            @RequestParam(name = "check_in", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkInDate,
+            @RequestParam(name = "check_out", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate checkOutDate,
+            @RequestParam(name = "rooms", required = false,  defaultValue = "1") Integer paxRooms,
             Model model) throws Exception {
-        var room = bookingService.getAvailableRoom(checkInDate, checkOutDate, roomType);
-        if  (room.isEmpty())
+        var rooms = bookingService.getAvailableRooms(checkInDate, checkOutDate, roomType);
+
+        if (rooms.size() < paxRooms)
         {
-            throw new Exception("No Rooms available for reservation");
+            throw new Exception("Not Enough rooms available");
         }
-        var reservation = new Reservation();
+
+        var roomsSelected = rooms.stream().sorted(Comparator.comparing(Room::getCostPerNight))
+                .limit(paxRooms)
+                .collect(Collectors.toList());
+
+        var reservation = new RoomReservation();
         reservation.setCheckInDate(checkInDate);
-        reservation.setCheckInDate(checkOutDate);
-        reservation.setRoom(room.get());
+        reservation.setCheckOutDate(checkOutDate);
 
+        for(var room : roomsSelected)
+        {
+            reservation.addRoom(room);
+        }
 
-
+        model.addAttribute("room_type", roomType);
         model.addAttribute("check_in", checkInDate);
         model.addAttribute("check_out", checkOutDate);
-        model.addAttribute("adults", adults);
-        model.addAttribute("room", room.get());
+        model.addAttribute("pax_rooms", paxRooms);
         model.addAttribute("total", reservation.getTotalRoomCost());
+
+        var createReservation = new MakeReservationDto();
+        createReservation.setRoomType(roomType);
+        createReservation.setPaxRooms(paxRooms);
+        createReservation.setCheckInDate(checkInDate);
+        createReservation.setCheckOutDate(checkOutDate);
+
+        model.addAttribute("reservation", createReservation);
 
         return "reservations/form";
     }
 
-    // POST
+    @PostMapping()
+    public  String handleReservation(@ModelAttribute("reservation")  MakeReservationDto reservationDto) throws Exception {
+        var reservation = bookingService.placeReservation(reservationDto);
+        if (reservation.isPresent())
+        {
+
+        }
+        return "reservations/form";
+    }
 }

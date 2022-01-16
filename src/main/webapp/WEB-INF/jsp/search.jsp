@@ -62,7 +62,7 @@
                             <spring:param name="roomType" value="${var.roomType.name()}" />
                             <spring:param name="checkInDate" value="${check_in}" />
                             <spring:param name="checkOutDate" value="${check_out}" />
-                            <spring:param name="adults" value="${adults}" />
+                            <spring:param name="rooms" value="${pax_rooms}" />
                         </spring:url>
                         <a href="${reservation_url}">Reserve Now</a>
                     </td>

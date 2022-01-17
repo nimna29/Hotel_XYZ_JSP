@@ -5,6 +5,8 @@
     <style>
         .flex-container {
             display: flex;
+            margin-left: 28%;
+            margin-right: 28%;
         }
 
         .flex-child {
@@ -18,6 +20,7 @@
             margin-left: 20px;
             margin-right: 20px;
             background-color: #fca50352;
+            max-width: 800px;
         }
 
         .flex-child:first-child {
@@ -101,11 +104,11 @@
             <li>Mobile No: ${reservation.guest.mobileNo}</li>
             <li>NIC: ${reservation.guest.nic}</li>
             <li>Passport: ${reservation.guest.passport}</li>
-            <li>Reservation ID:${reservation.id}</li> </li>
+            <li>Reservation ID: ${reservation.id}</li> </li>
             <li>Rating: ${reservation.rating}</li></li>
             <li>Status: ${reservation.status}</li></li>
-            <li>Check In Date:${reservation.checkInDate}</li> </li>
-            <li>Check Out Date:${reservation.checkOutDate}</li> </li>
+            <li>Check In Date: ${reservation.checkInDate}</li> </li>
+            <li>Check Out Date: ${reservation.checkOutDate}</li> </li>
             <li>Amount: ${reservation.invoice.total}</li></li>
         </ul>
 

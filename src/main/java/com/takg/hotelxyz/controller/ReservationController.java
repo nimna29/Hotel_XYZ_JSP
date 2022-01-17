@@ -65,7 +65,7 @@ public class ReservationController {
 
         model.addAttribute("reservation", createReservation);
 
-        return "reservations/form";
+        return "reservations/form2";
     }
 
     @PostMapping()
@@ -73,8 +73,8 @@ public class ReservationController {
         var reservation = bookingService.placeReservation(reservationDto);
         if (reservation.isPresent())
         {
-
+            return "reservations/complete";
         }
-        return "reservations/form";
+        return "reservations/form2";
     }
 }

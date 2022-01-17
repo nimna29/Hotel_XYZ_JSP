@@ -99,7 +99,7 @@
             <div class="title" style='color:white;'>RESERVATION</div>
             <div class="content"><br>
 
-              <form:form method="GET" action="/booking">
+              <form method="GET" action="/booking">
 
                 <div class="user-details">
 
@@ -143,6 +143,10 @@
           </div>
 
 <br><br><br>
+          <form>
+            <div class="button">
+            </div>
+          </form>
 
           </div>
           <!-- end rooms-filter -->
@@ -158,7 +162,7 @@
               <div class="room-box">
                 <div class="content">
                   <h3>Deluxe Room</h3>
-                  <div class="price-line"><h4><span>LKR</span> 1000.00</h4></div>
+                  <div class="price-line"><h4><span>$</span> 100.00</h4></div>
                   <p>Always dreamed of staying in a castle hotel? 
                     This is Deluxe room</p>
                   <div class="bottom-specs">
@@ -193,19 +197,28 @@
               <div class="room-box">
                 <div class="content">
                   <h3>Premium Room</h3>
-                  <div class="price-line"><h4><span>LKR</span> 2000.00</h4></div>
+                  <div class="price-line"><h4><span>$</span> 200.00</h4></div>
                   <p>Always dreamed of staying in a castle hotel? 
                     This is Premium room</p>
                   <div class="bottom-specs">
                     <div class="icons"> <img src="_frontend/images/icon01.png" alt="Image"> <img src="_frontend/images/icon02.png" alt="Image"> <img src="_frontend/images/icon03.png" alt="Image"> <img src="_frontend/images/icon04.png" alt="Image"> <img src="_frontend/images/icon05.png" alt="Image"> </div>
                     <!-- end icons -->
-                    <div class="reviews">Available <span>10</span></div>
+                    <div class="reviews">Available <span>${rooms.get(RoomType.Premium).size()}</span></div>
                     <!-- end reviews --> 
                   </div>
                   <!-- end bottom-specs -->
+                  <spring:url value="/reservations/?room_type={roomType}&check_in={checkInDate}&check_out={checkOutDate}&rooms={rooms}" var="premium_url">
+                    <spring:param name="roomType" value="${RoomType.Premium}" />
+                    <spring:param name="checkInDate" value="${check_in}" />
+                    <spring:param name="checkOutDate" value="${check_out}" />
+                    <spring:param name="rooms" value="${pax_rooms}" />
+                  </spring:url>
+
                   <form method="GET" name="premium">
                     <div class="button">
-                      <input type="submit" value="Select" >
+                      <a href="${premium_url}">
+                        <input type="submit" value="Select">
+                      </a>
                     </div>
                   </form>
                 </div>
@@ -217,20 +230,29 @@
             <li>
               <div class="room-box">
                 <div class="content">
-                  <h3>Suite Room</h3>
-                  <div class="price-line"><h4><span>LKR</span> 4000.00</h4></div>
+                  <h3>Suit Room</h3>
+                  <div class="price-line"><h4><span>$</span> 400.00</h4></div>
                   <p>Always dreamed of staying in a castle hotel? 
                     This is Suite room</p>
                   <div class="bottom-specs">
                     <div class="icons"> <img src="_frontend/images/icon01.png" alt="Image"> <img src="_frontend/images/icon02.png" alt="Image"> <img src="_frontend/images/icon03.png" alt="Image"> <img src="_frontend/images/icon04.png" alt="Image"> <img src="_frontend/images/icon05.png" alt="Image"> </div>
                     <!-- end icons -->
-                    <div class="reviews">Available <span>4</span></div>
+                    <div class="reviews">Available <span>${rooms.get(RoomType.Suit).size()}</span></div>
                     <!-- end reviews --> 
                   </div>
                   <!-- end bottom-specs -->
-                  <form method="GET" name="suite" >
+                  <spring:url value="/reservations/?room_type={roomType}&check_in={checkInDate}&check_out={checkOutDate}&rooms={rooms}" var="suit_url">
+                    <spring:param name="roomType" value="${RoomType.Suit}" />
+                    <spring:param name="checkInDate" value="${check_in}" />
+                    <spring:param name="checkOutDate" value="${check_out}" />
+                    <spring:param name="rooms" value="${pax_rooms}" />
+                  </spring:url>
+
+                  <form method="GET" name="suit">
                     <div class="button">
-                      <input type="submit" value="Select" >
+                      <a href="${suit_url}">
+                        <input type="submit" value="Select">
+                      </a>
                     </div>
                   </form>
                 </div>
@@ -248,7 +270,7 @@
         </d:otherwise>
         </d:choose>
 
-        </form:form>
+        </form>
   </section>
   <!-- end content-section -->
   <section class="content-section no-spacing" data-background="#856d47">

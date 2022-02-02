@@ -106,6 +106,7 @@ public class BookingService {
 
                 invoice.addLine("Room Charge: " + room.getRoomType(), room.getCostPerNight());
             }
+            invoice.setTotal(reservation.getTotalRoomCost());
             reservation.setInvoice(invoice);
 
             reservationRepository.save(reservation);

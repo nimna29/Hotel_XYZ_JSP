@@ -104,7 +104,7 @@
             <td class="tdstyle1">${check_in}</td>
         </tr>
         <tr class="trstyle1">
-            <td class="tdstyle1">Check Out Type</td>
+            <td class="tdstyle1">Check Out Date</td>
             <td class="tdstyle1">${check_out}</td>
         </tr>
         <tr class="trstyle1">

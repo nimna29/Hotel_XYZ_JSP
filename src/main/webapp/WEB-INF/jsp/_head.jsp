@@ -24,4 +24,6 @@
     <link rel="stylesheet" href="_frontend/css/swiper.min.css">
     <link rel="stylesheet" href="_frontend/css/bootstrap.min.css">
     <link rel="stylesheet" href="<c:url value="_frontend/css/style.css"/>">
+    <link rel="stylesheet" href="<c:url value="_frontend/css/facilities.css"/>">
+
 </head>

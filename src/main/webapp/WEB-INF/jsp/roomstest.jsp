@@ -5,7 +5,6 @@
 <jsp:include page="_head.jsp">
   <jsp:param name="title" value="${title}"/>
 </jsp:include>
-
 <body>
 
 <div class="cursor js-cursor"></div>
@@ -27,15 +26,32 @@
     <div class="container">
       <ul class="nav-menu mobile-menu">
         <li><a href="<c:url value="rooms"/>">Rooms</a></li>
-        <li><a href="<c:url value="facilities"/>">Facilities</a></li>
-
+        <li><a href="bonquet.jsp">Bonquet</a></li>
+        <li><a href="facilities.jsp">Facilities</a></li>
+          <li>
+                <!--Currency Selection-->
+                <!--surround the select box with a "custom-select" DIV element. Remember to set the width:-->
+                <div class="custom-select" style="width:150px; height:56px; background:transparent; border-color:transparent; margin-left:10px; margin-top: -14px;">
+                <form method="POST" name="currencyForm" action = "#">
+                <select>
+                  <option value="0">Currency</option>
+                  <option value="1">LKR</option>
+                  <option value="2">USD</option>
+                  <option value="3">EUR</option>
+                  <option value="4">GBP</option>
+                </select>
+                </form>
+                </div>
+                <!--Currency Selection End-->
+          </li>
       </ul>
       <ul class="nav-menu">
         <li><a href="<c:url value="/"/>">Home</a></li>
-        <li><a href="about.html">About Us</a></li>
+        <li><a href="about.jsp">About Us</a></li>
         <li><a href="<c:url value="rooms"/>">Rooms</a></li>
-        <li><a href="<c:url value="facilities"/>">Facilities</a></li>
-        <li><a href="contact-us.html">Contact Us</a></li>
+        <li><a href="bonquet.jsp">Bonquet</a></li>
+        <li><a href="facilities.jsp">Facilities</a></li>
+        <li><a href="contact-us.jsp">Contact Us</a></li>
       </ul>
       <div class="info-box"> <span>Follow Us On Social Media</span>
         <ul class="nav-social">
@@ -60,9 +76,25 @@
 
       <div class="site-menu">
         <ul>
-          <li><a href="<c:url value="rooms"/>">Rooms</a></li>
-        <li><a href="<c:url value="facilities"/>">Facilities</a></li>
-
+        <li><a href="<c:url value="rooms"/>">Rooms</a></li>
+        <li><a href="bonquet.jsp">Bonquet</a></li>
+        <li><a href="facilities.jsp">Facilities</a></li>
+          <li>
+                <!--Currency Selection-->
+                <!--surround the select box with a "custom-select" DIV element. Remember to set the width:-->
+                <div class="custom-select" style="width:150px; height:56px; background:transparent; border-color:transparent; margin-left:10px; margin-top: -14px;">
+                <form method="POST" name="currencyForm" action = "#">
+                <select>
+                  <option value="0">Currency</option>
+                  <option value="1">LKR</option>
+                  <option value="2">USD</option>
+                  <option value="3">EUR</option>
+                  <option value="4">GBP</option>
+                </select>
+                </form>
+                </div>
+                <!--Currency Selection End-->
+          </li>
         </ul>
       </div>
       <!-- end site-menu -->
@@ -81,7 +113,7 @@
     <!-- end container -->
   </nav>
   <!-- end navbar -->
-  <header class="page-header" data-background="_frontend/images/page-header01.jpg">
+  <header class="page-header" data-background="_frontend/images/rooms-page-header01.jpg">
     <div class="container">
       <h1>Rooms</h1>
       <p>We love staying in hotels</p>
@@ -95,13 +127,40 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
+          <div class="rooms-filter">
+            <div class="price-range">
+              <div class="range-slider">
+                <h6>PRICE RANGE</h6>
+                <input class="range-slider__range" type="range" value="50" min="0" max="250" step="25">
+                <span class="range-slider__value">0</span> </div>
+              <!-- edn range-slider -->
+
+            </div>
+            <!-- end price-range -->
+            <div class="specifications">
+              <h6>SPECIFICATIONS</h6>
+              <ul>
+                <li>
+                  <input type="checkbox">
+                  <small>Tv, Wifi</small> </li>
+                <li>
+                  <input type="checkbox">
+                  <small>Air Conditioner </small> </li>
+                <li>
+                  <input type="checkbox">
+                  <small>Packaging</small> </li>
+              </ul>
+            </div>
+            <!-- end speficications -->
+          </div>
+          <!-- end rooms-filter -->
           <ul class="rooms-list">
             <li>
               <div class="room-box">
-                <figure class="reveal-effect wow"><a href="<c:url value="deluxe-room"/>"><img src="_frontend/images/DeluxeRoom.png" alt="Image"></a></figure>
+                <figure class="reveal-effect wow"><a href="deluxe-room.jsp"><img src="_frontend/images/room-thumb01.jpg" alt="Image"></a></figure>
                 <div class="content">
-                  <div class="price-line"><span>STAY FROM</span> $100.00</div>
-                  <h3><a href="<c:url value="deluxe-room"/>">Deluxe Room</a></h3>
+                  <div class="price-line"><span>STAY FROM</span> $50.00</div>
+                  <h3><a href="deluxe-room.jsp">Deluxe Room</a></h3>
                   <p>Always dreamed of staying in a castle hotel?
                     The UK has some historic gems, ranging from
                     Norman conquest pads</p>
@@ -121,10 +180,10 @@
             <!-- end li -->
             <li>
               <div class="room-box">
-                <figure class="reveal-effect wow"><a href="<c:url value="premium-room"/>"><img src="_frontend/images/DoubleRoom.jpg" alt="Image"></a></figure>
+                <figure class="reveal-effect wow"><a href="double-room.jsp"><img src="_frontend/images/room-thumb02.jpg" alt="Image"></a></figure>
                 <div class="content">
-                  <div class="price-line"><span>STAY FROM</span> $200.00</div>
-                  <h3><a href="<c:url value="deluxe-room"/>">Premium Room</a></h3>
+                  <div class="price-line"><span>STAY FROM</span> $60.00</div>
+                  <h3><a href="double-room.jsp">Double Room</a></h3>
                   <p>Always dreamed of staying in a castle hotel?
                     The UK has some historic gems, ranging from
                     Norman conquest pads</p>
@@ -144,10 +203,10 @@
             <!-- end li -->
             <li>
               <div class="room-box">
-                <figure class="reveal-effect wow"><a href="<c:url value="suit-room"/>"><img src="_frontend/images/FamilyRoom.png" alt="Image"></a></figure>
+                <figure class="reveal-effect wow"><a href="family-room.jsp"><img src="_frontend/images/room-thumb03.jpg" alt="Image"></a></figure>
                 <div class="content">
-                  <div class="price-line"><span>STAY FROM</span> $400.00</div>
-                  <h3><a href="<c:url value="suit-room"/>">Suit Room</a></h3>
+                  <div class="price-line"><span>STAY FROM</span> $75.00</div>
+                  <h3><a href="family-room.jsp">Family Room</a></h3>
                   <p>Always dreamed of staying in a castle hotel?
                     The UK has some historic gems, ranging from
                     Norman conquest pads</p>
@@ -166,10 +225,29 @@
             </li>
             <!-- end li -->
             <li>
+              <div class="room-box">
+                <figure class="reveal-effect wow"><a href="honeymoon-room.jsp"><img src="_frontend/images/room-thumb04.jpg" alt="Image"></a></figure>
+                <div class="content">
+                  <div class="price-line"><span>STAY FROM</span> $90.00</div>
+                  <h3><a href="honeymoon-room.jsp">Honeymoon Room</a></h3>
+                  <p>Always dreamed of staying in a castle hotel?
+                    The UK has some historic gems, ranging from
+                    Norman conquest pads</p>
+                  <div class="bottom-specs">
+                    <div class="icons"> <img src="_frontend/images/icon01.png" alt="Image"> <img src="_frontend/images/icon02.png" alt="Image"> <img src="_frontend/images/icon03.png" alt="Image"> <img src="_frontend/images/icon04.png" alt="Image"> <img src="_frontend/images/icon05.png" alt="Image"> </div>
+                    <!-- end icons -->
+                    <div class="reviews">925 guest reviews <span>8.0</span></div>
+                    <!-- end reviews -->
+                  </div>
+                  <!-- end bottom-specs -->
 
+                </div>
+                <!-- end content -->
+              </div>
+              <!-- end room-box -->
             </li>
             <!-- end li -->
-
+          </ul>
     <!-- end container -->
   </section>
   <!-- end content-section -->
@@ -193,7 +271,7 @@
   <!-- end content-section -->
 
   <jsp:include page="_footer.jsp"/>
-  <!-- end footer --> 
+
 </main>
 
 <!--JS Files-->

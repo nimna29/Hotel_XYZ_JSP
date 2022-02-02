@@ -25,7 +25,7 @@
             </div>
             <!-- end col-2 -->
             <div class="col-12">
-                <div class="bottom-bar"> <span>© 2021 TAKG Cooperation | HOTEL XYZ</span>
+                <div class="bottom-bar"> <span>2022 TAKG Cooperation | HOTEL XYZ</span>
                     <ul class="footer-social">
                         <li><a href="#">Facebook</a></li>
                         <li><a href="#">Twitter</a></li>

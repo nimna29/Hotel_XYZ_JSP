@@ -291,7 +291,7 @@
 
     <!-- JS FILES -->
 <jsp:include page="_scripts.jsp"/>
-<script src="js/popup.js"></script>
+<script src="_frontend/js/popup.js"></script>
 
     <!--Currency JS-->
     <script>

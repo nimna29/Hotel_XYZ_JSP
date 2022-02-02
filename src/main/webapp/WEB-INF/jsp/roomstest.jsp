@@ -27,7 +27,7 @@
       <ul class="nav-menu mobile-menu">
         <li><a href="<c:url value="rooms"/>">Rooms</a></li>
         <li><a href="bonquet.jsp">Bonquet</a></li>
-        <li><a href="facilities.jsp">Facilities</a></li>
+        <li><a href="<c:url value="facilities"/>">Facilities</a></li>
           <li>
                 <!--Currency Selection-->
                 <!--surround the select box with a "custom-select" DIV element. Remember to set the width:-->
@@ -50,7 +50,7 @@
         <li><a href="about.jsp">About Us</a></li>
         <li><a href="<c:url value="rooms"/>">Rooms</a></li>
         <li><a href="bonquet.jsp">Bonquet</a></li>
-        <li><a href="facilities.jsp">Facilities</a></li>
+        <li><a href="<c:url value="facilities"/>">Facilities</a></li>
         <li><a href="contact-us.jsp">Contact Us</a></li>
       </ul>
       <div class="info-box"> <span>Follow Us On Social Media</span>
@@ -78,7 +78,7 @@
         <ul>
         <li><a href="<c:url value="rooms"/>">Rooms</a></li>
         <li><a href="bonquet.jsp">Bonquet</a></li>
-        <li><a href="facilities.jsp">Facilities</a></li>
+        <li><a href="<c:url value="facilities"/>">Facilities</a></li>
           <li>
                 <!--Currency Selection-->
                 <!--surround the select box with a "custom-select" DIV element. Remember to set the width:-->

@@ -10,6 +10,6 @@ public class HomeController {
     public String showHome(Model model)
     {
         model.addAttribute("title","HOME");
-        return  "home2";
+        return "home";
     }
 }

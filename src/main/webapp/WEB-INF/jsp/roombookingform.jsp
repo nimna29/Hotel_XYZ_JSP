@@ -173,7 +173,7 @@
                   </div>
                   <!-- end bottom-specs -->
                   <spring:url value="/reservations/?room_type={roomType}&check_in={checkInDate}&check_out={checkOutDate}&rooms={rooms}" var="deluxe_url">
-                    <spring:param name="roomType" value="${RoomType.Deluxe}" />
+                    <spring:param name="roomType" value="Deluxe" />
                     <spring:param name="checkInDate" value="${check_in}" />
                     <spring:param name="checkOutDate" value="${check_out}" />
                     <spring:param name="rooms" value="${pax_rooms}" />
@@ -208,7 +208,7 @@
                   </div>
                   <!-- end bottom-specs -->
                   <spring:url value="/reservations/?room_type={roomType}&check_in={checkInDate}&check_out={checkOutDate}&rooms={rooms}" var="premium_url">
-                    <spring:param name="roomType" value="${RoomType.Premium}" />
+                    <spring:param name="roomType" value="Premium" />
                     <spring:param name="checkInDate" value="${check_in}" />
                     <spring:param name="checkOutDate" value="${check_out}" />
                     <spring:param name="rooms" value="${pax_rooms}" />
@@ -242,7 +242,7 @@
                   </div>
                   <!-- end bottom-specs -->
                   <spring:url value="/reservations/?room_type={roomType}&check_in={checkInDate}&check_out={checkOutDate}&rooms={rooms}" var="suit_url">
-                    <spring:param name="roomType" value="${RoomType.Suit}" />
+                    <spring:param name="roomType" value="Suit" />
                     <spring:param name="checkInDate" value="${check_in}" />
                     <spring:param name="checkOutDate" value="${check_out}" />
                     <spring:param name="rooms" value="${pax_rooms}" />

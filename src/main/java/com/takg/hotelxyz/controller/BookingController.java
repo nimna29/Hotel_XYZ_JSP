@@ -2,6 +2,7 @@ package com.takg.hotelxyz.controller;
 
 import com.takg.hotelxyz.domain.model.Room;
 import com.takg.hotelxyz.domain.model.RoomType;
+import com.takg.hotelxyz.dto.RoomAvailabilityViewModel;
 import com.takg.hotelxyz.services.BookingService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -46,8 +47,16 @@ public class BookingController {
         {
             var rooms =  bookingService.getAvailableRooms(checkInDate, checkOutDate);
             var roomsByTypes = rooms.stream().collect(groupingBy(Room::getRoomType));
-            model.addAttribute("room_count", rooms.size());
-            model.addAttribute("rooms", roomsByTypes);
+
+            var roomAvailability = new RoomAvailabilityViewModel();
+            roomAvailability.setTotalCount(rooms.size());
+            roomAvailability.setDeluxeCount(roomsByTypes.get(RoomType.Deluxe).size());
+            roomAvailability.setPremiumCount(roomsByTypes.get(RoomType.Premium).size());
+            roomAvailability.setSuitCount(roomsByTypes.get(RoomType.Suit).size());
+
+            model.addAttribute("room_availability", roomAvailability);
+//            model.addAttribute("rooms", roomsByTypes);
+//            model.addAttribute("deluxe_room_count", deluxeRooms);
         }
 
         return "roombookingform";

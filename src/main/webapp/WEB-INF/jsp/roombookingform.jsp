@@ -152,10 +152,10 @@
           <!-- end rooms-filter -->
 
         <d:choose>
-        <d:when test="${rooms == null}">
+        <d:when test="${room_availability == null}">
 
         </d:when>
-        <d:when test="${room_count > 0}">
+        <d:when test="${room_availability.totalCount > 0}">
 
           <ul class="rooms-list">
             <li>
@@ -168,7 +168,7 @@
                   <div class="bottom-specs">
                     <div class="icons"> <img src="_frontend/images/icon01.png" alt="Image"> <img src="_frontend/images/icon02.png" alt="Image"> <img src="_frontend/images/icon03.png" alt="Image"> <img src="_frontend/images/icon04.png" alt="Image"> <img src="_frontend/images/icon05.png" alt="Image"> </div>
                     <!-- end icons -->
-                    <div class="reviews">Available <span>${rooms.get(RoomType.Deluxe).size()}</span></div>
+                    <div class="reviews">Available <span>${room_availability.deluxeCount}</span></div>
                     <!-- end reviews --> 
                   </div>
                   <!-- end bottom-specs -->
@@ -203,7 +203,7 @@
                   <div class="bottom-specs">
                     <div class="icons"> <img src="_frontend/images/icon01.png" alt="Image"> <img src="_frontend/images/icon02.png" alt="Image"> <img src="_frontend/images/icon03.png" alt="Image"> <img src="_frontend/images/icon04.png" alt="Image"> <img src="_frontend/images/icon05.png" alt="Image"> </div>
                     <!-- end icons -->
-                    <div class="reviews">Available <span>${rooms.get(RoomType.Premium).size()}</span></div>
+                    <div class="reviews">Available <span>${room_availability.premiumCount}</span></div>
                     <!-- end reviews --> 
                   </div>
                   <!-- end bottom-specs -->
@@ -237,7 +237,7 @@
                   <div class="bottom-specs">
                     <div class="icons"> <img src="_frontend/images/icon01.png" alt="Image"> <img src="_frontend/images/icon02.png" alt="Image"> <img src="_frontend/images/icon03.png" alt="Image"> <img src="_frontend/images/icon04.png" alt="Image"> <img src="_frontend/images/icon05.png" alt="Image"> </div>
                     <!-- end icons -->
-                    <div class="reviews">Available <span>${rooms.get(RoomType.Suit).size()}</span></div>
+                    <div class="reviews">Available <span>${room_availability.suitCount}</span></div>
                     <!-- end reviews --> 
                   </div>
                   <!-- end bottom-specs -->

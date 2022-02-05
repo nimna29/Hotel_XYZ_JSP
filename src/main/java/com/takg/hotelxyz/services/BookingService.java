@@ -75,6 +75,7 @@ public class BookingService {
                     .limit(reservationDto.getPaxRooms())
                     .collect(Collectors.toList());
 
+            // if rooms not available return empty
             if (roomsSelected.isEmpty())
             {
                 return Optional.empty();
@@ -118,6 +119,7 @@ public class BookingService {
                 roomRepository.save(room);
             }
 
+            // Email Send
             MimeMessage message = emailSender.createMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, MimeMessageHelper.MULTIPART_MODE_MIXED_RELATED,
                     StandardCharsets.UTF_8.name());

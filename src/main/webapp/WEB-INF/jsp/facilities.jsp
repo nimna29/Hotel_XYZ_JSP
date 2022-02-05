@@ -2,7 +2,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!doctype html>
 <html lang="en">
-<jsp:include page="WEB-INF/jsp/_head.jsp">
+<jsp:include page="_head.jsp">
     <jsp:param name="title" value="${title}"/>
 </jsp:include>
 
@@ -285,12 +285,12 @@
         </section>
         <!-- end content-section -->
 
-    <jsp:include page="WEB-INF/jsp/_footer.jsp"/>
+    <jsp:include page="_footer.jsp"/>
         <!-- end footer -->
     </main>
 
     <!-- JS FILES -->
-<jsp:include page="WEB-INF/jsp/_scripts.jsp"/>
+<jsp:include page="_scripts.jsp"/>
 <script src="_frontend/js/popup.js"></script>
 
     <!--Currency JS-->
